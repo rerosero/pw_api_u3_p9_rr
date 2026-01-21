@@ -1,6 +1,5 @@
 package uce.edu.web.api.matricula.interfaces;
 
-
 import java.util.List;
 
 import jakarta.inject.Inject;
@@ -21,33 +20,37 @@ public class EstudianteResource {
 
     @GET
     @Path("/todos")
-    public List<Estudiante> listarTodos(){
+    public List<Estudiante> listarTodos() {
         return this.estudianteService.listarTodos();
     }
+
     @GET
     @Path("/consultarPorId/{id}")
-    public Estudiante consultarPorId(@PathParam("id") Integer idem){
+    public Estudiante consultarPorId(@PathParam("id") Integer idem) {
         return this.estudianteService.consultarPorId(idem);
     }
 
     @POST
     @Path("/crear")
-    public void guardar(Estudiante estu){
+    public void guardar(Estudiante estu) {
         this.estudianteService.crear(estu);
     }
-        @PUT
+
+    @PUT
     @Path("/actualizar/{id}")
-    public void actualizar(@PathParam("id") Integer id, Estudiante est){
+    public void actualizar(@PathParam("id") Integer id, Estudiante est) {
         this.estudianteService.actualizar(id, est);
     }
+
     @PATCH
     @Path("/actualizarParcial/{id}")
-    public void actualizarParcial(@PathParam("id") Integer id, Estudiante est){
+    public void actualizarParcial(@PathParam("id") Integer id, Estudiante est) {
         this.estudianteService.actualizarParcial(id, est);
     }
+
     @DELETE
     @Path("/borrar/{id}")
-    public void borrar(@PathParam("id") Integer id){
+    public void borrar(@PathParam("id") Integer id) {
         this.estudianteService.eliminar(id);
     }
 }
