@@ -5,6 +5,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import uce.edu.web.api.matricula.domain.Materia;
 
 @ApplicationScoped
-public class MateriaRepository implements PanacheRepository<Materia>{
+public class MateriaRepository implements PanacheRepository<Materia> {
 
 }

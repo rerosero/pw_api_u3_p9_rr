@@ -33,23 +33,18 @@ public class MateriaResource {
     }
     @PUT
     @Path("/actualizar/{id}")
-    @jakarta.ws.rs.Consumes("application/json")
-    @jakarta.ws.rs.Produces("application/json")
     public Materia actualizar(@PathParam("id") Integer id, Materia mat){
         this.materiaService.actualizar(id, mat);
         return this.materiaService.consultarPorId(id);
     }
     @PATCH
     @Path("/actualizarParcial/{id}")
-    @jakarta.ws.rs.Consumes("application/json")
-    @jakarta.ws.rs.Produces("application/json")
     public Materia actualizarParcial(@PathParam("id") Integer id, Materia mat){
         this.materiaService.actualizarParcial(id, mat);
         return this.materiaService.consultarPorId(id);
     }
     @DELETE
     @Path("/borrar/{id}")
-    @jakarta.ws.rs.Produces("application/json")
     public jakarta.ws.rs.core.Response borrar(@PathParam("id") Integer id){
         this.materiaService.eliminar(id);
         return jakarta.ws.rs.core.Response.ok().build();
@@ -62,7 +57,6 @@ public class MateriaResource {
     
     @DELETE
     @Path("/borrarPorNombre/{nombre}")
-    @jakarta.ws.rs.Produces("application/json")
     public jakarta.ws.rs.core.Response borrarPorNombre(@PathParam("nombre") String nombre){
         this.materiaService.borrarPorNombre(nombre);
         return jakarta.ws.rs.core.Response.ok().build();

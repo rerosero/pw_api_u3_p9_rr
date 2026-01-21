@@ -21,6 +21,7 @@ public class EstudianteService {
      @Transactional
      public void crear(Estudiante estu){
          this.estudianteRepository.persist(estu);
+
      }
      @Transactional
      public void actualizar(Integer id, Estudiante est){
@@ -42,9 +43,11 @@ public class EstudianteService {
       if(est.fechaNacimiento != null){
         estu.fechaNacimiento = est.fechaNacimiento;
       }
-    }
+      //SE ACTUALIZA AUTOMATIICAMENTE POR DIRTY CHECKING
+     }
      @Transactional
      public void eliminar(Integer id){
         this.estudianteRepository.deleteById(id.longValue());
      }
+
 }

@@ -10,7 +10,7 @@ import uce.edu.web.api.matricula.domain.Materia;
 
 @ApplicationScoped
 @Transactional
-public class MateriaService {
+public class MateriaService  {
     @Inject
     private MateriaRepository materiaRepository;
 
