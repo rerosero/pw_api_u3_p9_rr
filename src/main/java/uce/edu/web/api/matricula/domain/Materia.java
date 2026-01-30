@@ -19,6 +19,6 @@ public class Materia {
     public String codigo;
     public String nombre;
     public String descripcion;
-    public String creditos;
+    public Integer creditos;
     
-}
+} 

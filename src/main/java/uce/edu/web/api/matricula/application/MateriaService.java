@@ -5,17 +5,17 @@ import java.util.List;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import uce.edu.web.api.matricula.infraestructure.MateriaRepository;
 import uce.edu.web.api.matricula.domain.Materia;
+import uce.edu.web.api.matricula.infraestructure.MateriaRepository;
 
 @ApplicationScoped
 @Transactional
-public class MateriaService  {
+public class MateriaService {
     @Inject
     private MateriaRepository materiaRepository;
 
-    public List<Materia> listarTodos() {
-        return this.materiaRepository.listAll();
+    public List<Materia> listarTodas() {
+        return materiaRepository.listAll();
     }
 
     public Materia consultarPorId(Integer id) {
@@ -23,31 +23,29 @@ public class MateriaService  {
     }
 
     @Transactional
-    public void crear(Materia mat) {
-        this.materiaRepository.persist(mat);
+    public void crear(Materia mate) {
+        this.materiaRepository.persist(mate);
     }
 
     @Transactional
     public void actualizar(Integer id, Materia mat) {
-        Materia materia = this.consultarPorId(id);
-        materia.nombre = mat.nombre;
-        materia.codigo = mat.codigo;
-        materia.creditos = mat.creditos;
-        materia.descripcion = mat.descripcion;
-
+        Materia mate = this.consultarPorId(id);
+        mate.nombre = mat.nombre;
+        mate.creditos = mat.creditos;
+        mate.descripcion = mat.descripcion;
     }
 
     @Transactional
     public void actualizarParcial(Integer id, Materia mat) {
-        Materia materia = this.consultarPorId(id);
+        Materia mate = this.consultarPorId(id);
         if (mat.nombre != null) {
-            materia.nombre = mat.nombre;
-        }
-        if (mat.codigo != null) {
-            materia.codigo = mat.codigo;
+            mate.nombre = mat.nombre;
         }
         if (mat.creditos != null) {
-            materia.creditos = mat.creditos;
+            mate.creditos = mat.creditos;
+        }
+        if (mat.descripcion != null) {
+            mate.descripcion = mat.descripcion;
         }
     }
 
@@ -56,12 +54,15 @@ public class MateriaService  {
         this.materiaRepository.deleteById(id.longValue());
     }
 
-    public Materia buscarMateria(String materia) {
-        return materiaRepository.find("lower(trim(nombre)) = ?1", materia.trim().toLowerCase()).firstResult();
+    public List<Materia> buscarPorCreditos(Integer creditos) {
+        return this.materiaRepository.buscarPorCreditos(creditos);
     }
 
-    @Transactional
-    public void borrarPorNombre(String nombre) {
-        this.materiaRepository.delete("nombre = ?1", nombre);
+    public List<Materia> buscarPorNombre(String nombre) {
+        return this.materiaRepository.buscarPorNombre(nombre);
+    }
+
+    public List<Materia> buscarPorTipo(String tipo, Integer semestre) {
+        return this.materiaRepository.find("tipo =?1 and semestre =?2", tipo, semestre).list();
     }
 }
