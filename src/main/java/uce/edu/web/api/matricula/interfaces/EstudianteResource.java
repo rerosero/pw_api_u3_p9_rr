@@ -39,7 +39,7 @@ public class EstudianteResource {
     @GET
     @Path("")
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed("admin")
+    @RolesAllowed({ "admin", "user" })
     public List<EstudianteRepresentation> listarTodos() {
         System.out.println("XXXXXXXXXXX  Listar todos los estudiantes XXXXXXXXXXX ");
         List<EstudianteRepresentation> lista = new ArrayList<>();
